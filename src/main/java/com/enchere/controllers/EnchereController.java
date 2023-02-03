@@ -42,6 +42,21 @@ public class EnchereController {
             throw e;
         }
     }
+    
+    
+    
+
+    //    build create enchere REST API
+    @GetMapping("/recordEn")
+    public Enchere recordEnchere() throws Exception {
+        try {
+            return Enchere.recordEnchere();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
 
     //    build create enchere REST API
     @PostMapping("/rechercheAvancer")
