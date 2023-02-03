@@ -1,0 +1,94 @@
+I - BackOffice:
+    1 - Login admin:
+        ☐ front (page login)
+        ☐ metier
+            ✔ Admin.java (models) @done(23-01-19 18:55)
+            ✔ AdminController (fonction: login) @done(23-01-19 18:55)
+            ☐ gestion token
+        ☐ base
+            ✔ admin(id, email, mdp, solde) @done(23-01-19 18:55)
+
+    2 - gestion des element necessaire:
+        ☐ Categorie
+            ☐ Crud categorie
+                ☐ front (page categorie: (liste et formulaire d'insertion))
+                ✔ metier @done(23-01-18 09:54)
+                    ✔ Categorie.java (models) @done(23-01-18 09:54)
+                    ✔ CategorieController (miantso anity raha hanao crud page) @done(23-01-18 09:54)
+                        ✔ fonction @done(23-01-18 09:54)
+                            ✔ liste @done(23-01-18 09:54)
+                            ✔ inserer @done(23-01-18 09:54)
+                            ✔ update @done(23-01-18 09:54)
+                            ✔ delete @done(23-01-18 09:54)
+                ✔ base @done(23-01-18 09:54)
+                    ✔ categorie(id, nom) @done(23-01-19 18:55)
+        ✔ Duree enchere (terminer l'enchere si la duree est terminer) [argumement: dateDebut, duree] @done(23-01-18 09:54)
+            ✔ fonction pour verifier si l'enchere est terminer (Enchere: terminerEnchere(), terminerEnchereById(idEnchere)) @done(23-01-18 09:54)
+                ✔ Date debut + duree = dateFin @done(23-01-19 18:54)
+                ✔ si dateFin >= now() -> terminer @done(23-01-19 18:54)
+                OU
+            ✔ fonction pour voir la duree restant (Enchere: getDureeRestantById(idenchere), getDureeRestant()) @done(23-01-18 09:54)
+                ✔ dateFin - now() [en heure] @done(23-01-19 18:54)
+
+    3 - tableau statistique:
+        ✔ categorie maro mandefa   (url: categorie/classementCategorie)
+        ✔ Record de vente ny enchere (url: enchere/record)
+        ✔ client nividy enchere maro (url: enchere/recordAcheteur)
+
+
+    4 - Validation rechargement compte:
+        ☐ front (page listeClientRechargeCompte: (avec lien valider a chaque client))
+        ☐ metier 
+            ✔ Solde.java (models) @done(23-01-19 18:56)
+            ✔ SoldeController @done(23-01-19 18:56)
+                 ✔ fonction @done(23-01-19 18:56)
+                    ✔ liste (lister le solde avec idMouvementSolde=1 et valider=false) @done(23-01-19 18:56)
+                    ✔ inserer(inserer un mouvement par client) @done(23-01-19 18:56)
+        ✔ base @done(23-01-19 18:56)
+            ✔ client(id, nom, prenom, email, mdp) @done(23-01-19 18:56)
+            ✔ mouvementSolde(id, nom) [depot ou retrait] @done(23-01-19 18:56)
+            ✔ solde(idClient, idMouvementSolde, montant, valider) @done(23-01-19 18:56)
+                ✔ [colonne valider: applicable uniquement dans le depot car l'admin doit le valider] @done(23-01-19 18:56)
+
+
+II - FrontOffice Web:
+     ☐ Voir liste/fiche des enchères (sans login)
+        ☐ Liste
+            ☐ front (page listeEnchere)
+            ✔ metier @done(23-01-18 10:01)
+                ✔ Enchere.java (models) [enchereEnCours(), enchereEnAttente()] @done(23-01-18 09:54)
+                ✔ EnchereController @done(23-01-18 09:54)
+                    ✔ fonction @done(23-01-18 09:54)
+                        ✔ liste (liste des encheres avec fini=false) (url: enchere)
+            ✔ base @done(23-01-18 09:54)
+                ✔ enchere(id, produit, description, prixMin, duree, idCategorie, idClient, fini, dateDebut) @done(23-01-18 10:00)
+        ☐ fiche
+            ☐ front (page ficheEnchere)
+            ✔ metier @done(23-01-18 10:01)
+                ✔ EnchereController @done(23-01-18 10:02)
+                    ✔ fonction @done(23-01-18 10:02)
+                        ✔ fiche(idEnchere) (fiche de l'enchere avec id=idEnchereSelectionner) (url: enchere/{id})
+    ☐ Renchérir (avec login)
+        ☐ front (page encherir)
+        ✔ metier @done(23-01-18 10:22)
+            ✔ EnchereController @done(23-01-18 10:22) ()
+                ✔ utiliser le foction fiche @done(23-01-18 10:23)
+            ✔ Boutton avec Encherir(si il n'a pas enchere miser: (select enchere where idCLient=sonId).size != 0) ou Reencherir(sinon) @done(23-01-18 10:22) (verifiena am attribut dejaEncherir am Enchere)
+                ✔ ajouter attribut dejaEncherir dans la classe model Enchere default false (setna true rah size != 0) @done(23-01-18 10:22)
+            ☐ En cliquant le boutton: login s'il n'est pas connecter sinon page encherir
+    ☐  Faire une recherche avancé (Par mot clé, date, catégorie, prix, statut)
+        ☐ front (page: recherhe[pour le input] et resultatRecherche)
+        ✔ Metier @done(23-01-19 20:27)
+            ✔ fonction (Dans le classe model enchere) @done(23-01-19 20:27)
+                ✔ genererSqlRecherche() (a partir des inputs) table enchere (url: enchere/rechercheAvancer)
+    ☐ Voir l’historique de ses propres enchères
+        ☐ front (page: listeEnchereParClient) 
+            ☐ liste des produits qu'il a mis en vente (avec boutton details)
+            ☐ liste de offre de chaque produit selectionner(order by date)
+        ✔ Metier @done(23-01-19 20:26)
+            ✔ fonction @done(23-01-19 20:26)
+                ✔ getEnchereParClient() [models.Enchere] (url: enchere//getEnchereParClient/{id})
+                ✔ getOffreParEnchere() [models.Enchere] (url: offre//getOffreParClient/{id})
+        ✔ base @done(23-01-19 20:26)
+            ✔ offre(id, idEnchere, idClient, date, montant) @done(23-01-19 18:47)
+

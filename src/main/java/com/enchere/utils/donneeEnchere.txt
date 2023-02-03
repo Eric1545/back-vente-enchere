@@ -1,0 +1,8 @@
+
+insert into enchere (produit, description, prixMin, dateDebut, duree, idCategorie, idClient) values
+                                                                                                 ('Maillot', 'lionnel messi', 2000, '2023-01-24 06:00:00', '10:00:00', 5, 1),
+                                                                                                 ('Ballon football', 'Coupe du monde 2014', 1000, '2023-01-24 10:00:00', '08:00:00', 5, 2),
+                                                                                                 ('Guitare', 'guitare base', 500, '2023-01-23 14:00:00', '05:00:00', 1, 1),
+                                                                                                 ('Peinture', 'Couleur varie', 1500, '2023-01-25 07:00:00', '06:00:00', 2, 3);
+
+

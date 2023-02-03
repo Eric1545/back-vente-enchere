@@ -1,0 +1,80 @@
+Base url:
+    - En ligne  : "https://venteenchere-cloud-back-spring.up.railway.app/api/projetEnchere/"
+    - Local     : "http://localhost:8080/api/projetEnchere"
+
+
+
+I - BackOffice:
+    1 - Login admin: "admin"   [methode post]
+
+    2 - gestion des element necessaire:
+        - Categorie: "categorie"
+            - liste              [methode get]
+            - inserer            [methode post]
+            - update    "/id"    [methode put]
+            - delete    "/id"    [methode delete]
+
+    3 - tableau statistique:
+        - categorie maro mandefa        (url: categorie/classementCategorie)
+        - Record de vente ny enchere    (url: enchere/recordEnchere)
+        - client nividy enchere maro    ???????? (url: enchere/recordAcheteur) ???????
+
+    4 - Validation rechargement compte:
+        - liste         (url: soldes/depot-non-valid)   [methode get]
+        - inserer       (url: soldes/)                   [methode post]
+
+
+
+II - FrontOffice Web (Cote back only):
+     1 - Voir liste/fiche des enchères (sans login)
+        - liste de toutes les encheres en cours      (url: enchere/toutesLesEnchereEnCours)              [methode get]
+        - liste des encheres des autres en cours     (url: enchere/leursEnchereEnCours/{monIdClient})    [methode get]
+
+        - liste de toutes les encheres en attente    (url: enchere/toutesLesEnchereEnAttente)              [methode get]
+        - liste des encheres des autres en attente   (url: enchere/leursEnchereEnAttente/{monIdClient})    [methode get]
+
+        - liste de toutes les encheres termine       (url: enchere/toutesLesEnchereTermine)              [methode get]
+        - liste des encheres des autres termine      (url: enchere/leursEnchereTermine/{monIdClient})    [methode get]
+
+        - liste des encheres des autres              (url: enchere/leursEnchere/{monIdClient})           [methode get]      (avec leurs status)
+
+        - fiche d'un enchere                (url: enchere/fiche/{IdEnchere})                    [methode get]
+
+    2 - Reancherir
+        - (url: enchere/encherir)   [methode post]
+
+    3 - Faire une recherche avancé
+        - (url: enchere/rechercheAvancer)   [methode post] -> mampiasa classe RechercheAvance
+
+    4 - Voir l’historique de ses propres enchères
+
+        - liste de mes encheres en cours             (url: enchere/mesEnchereEnCours/{monIdClient})      [methode get]
+
+        - liste de mes encheres termine              (url: enchere/mesEnchereTermine/{monIdClient})      [methode get]
+
+        - liste de mes encheres en attente           (url: enchere/mesEnchereEnAttente/{monIdClient})    [methode get]
+
+        - liste de mes encheres                      (url: enchere/mesEnchere/{monIdClient})             [methode get]      (avec leurs status)
+
+        - liste des offres par encheres              (url: offre/getOffreParEnchere/{idEnchere})         [methode get]
+
+
+
+III - Mobile
+    1 - S’inscrire et se connecter
+        - login :       (url: client/login)   [methode post]  -> ClientDao
+        - inscription : (url: client/save)    [methode post]  -> ClientDao
+
+    2 - Ajouter une enchère [ Date et heure (automatique), description, catégorie, prix de mise enchère, prix minimal de vente, durée enchère ; Une ou plusieurs photos ]
+        - (url: enchere/save)   [methode post]
+        - mbola tokony hisy fi ajoutena photo
+
+    3 - Voir la liste de ses enchères et leur statuts
+        - (url: mesEnchere/{monIdClient})   [methode get]
+
+    4 - Recevoir une notification quand l’enchère est terminée
+        - ???
+        - mamorona table notification iao de insereko any  ny notification miteny ny enchere vita, ataoko any am mongo
+
+    5 - Recharger son compte
+        - (url: soldes/) [methode post]
